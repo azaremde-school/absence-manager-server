@@ -1,2 +1,2 @@
-# sn-server
-Social Network Server
+# absence-manager-server
+Abwesenheitsmanager Server 1.0
