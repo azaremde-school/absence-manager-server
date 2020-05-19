@@ -1,0 +1,1 @@
+# absence-manager-server
