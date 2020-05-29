@@ -5,12 +5,18 @@ import Environment from '../environment';
 import IExtendedRequest from '../abstract/extended-request';
 
 import logIn__request from './modules/account/log-in__request';
+import { signUpRequest } from './modules/account/sign-up__request';
+import { addClassRequest } from './modules/classes/add-class__request';
+import { getClassesRequest } from './modules/classes/get-classes__request';
 
 const router = express.Router();
 
 Burst.init({
   handlers: {
     'log-in__request': logIn__request,
+    'sign-up__request': signUpRequest,
+    'add-class__request': addClassRequest,
+    'get-classes__request': getClassesRequest,
   },
   log: Environment.log,
 });

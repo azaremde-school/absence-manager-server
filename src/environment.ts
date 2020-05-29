@@ -12,10 +12,6 @@ class Environment {
   public static mongodbUser: string;
   public static mongodbPassword: string;
 
-  public static cloudName: string;
-  public static cloudApiKey: string;
-  public static cloudApiSecret: string;
-
   public static allowedDomainsCount: number;
   public static allowedDomains: string[];
 
@@ -30,9 +26,6 @@ class Environment {
     console.log(`Secret key: ${Environment.secretKey}`);
     console.log(`MongoDB username: ${Environment.mongodbUser}`);
     console.log(`MongoDB password: ${Environment.mongodbPassword}`);
-    console.log(`Cloud name: ${Environment.cloudName}`);
-    console.log(`Cloud API key: ${Environment.cloudApiKey}`);
-    console.log(`Cloud API secret: ${Environment.cloudApiSecret}`);
     console.log(`Allowed domains count: ${Environment.allowedDomainsCount}`);
     console.log(`Allowed domains: ${Environment.allowedDomains}`);
     console.log(`App key: ${Environment.appKey}`);
@@ -52,10 +45,6 @@ class Environment {
 
     Environment.mongodbUser = <string> (process.env.MONGODB_USER || '');
     Environment.mongodbPassword = <string> (process.env.MONGODB_PASSWORD || '');
-
-    Environment.cloudName = <string> (process.env.CLOUD_NAME || '');
-    Environment.cloudApiKey = <string> (process.env.CLOUD_API_KEY || '');
-    Environment.cloudApiSecret = <string> (process.env.CLOUD_API_SECRET || '');
 
     Environment.allowedDomainsCount = <number> (process.env.ALLOWED_DOMAINS_COUNT || 0);
     Environment.allowedDomains = [];

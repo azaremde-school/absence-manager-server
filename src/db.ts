@@ -5,7 +5,7 @@ class DBAccessor {
   public static client: MongoClient;
 
   public static db(): Db {
-    return DBAccessor.client.db('social-network');
+    return DBAccessor.client.db('absence-manager');
   }
 
   public static init(): void {

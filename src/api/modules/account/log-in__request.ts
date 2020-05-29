@@ -59,24 +59,22 @@ export default async function (login: ILoginData, client: IClient): Promise<IRes
     userId: _id,
   });
 
-  console.log('LOGIN', client.clientType);
-
   return {
     status: 201,
     event: 'log-in__success',
-    data: _id,
+    data: { _id, token, session },
     auth: client.authentication,
-    cookies: [
-      {
-        name: 'session',
-        value: session,
-        expires: 720,
-      },
-      {
-        name: 'token',
-        value: token,
-        expires: 1,
-      },
-    ],
+    // cookies: [
+    //   {
+    //     name: 'session',
+    //     value: session,
+    //     expires: 720,
+    //   },
+    //   {
+    //     name: 'token',
+    //     value: token,
+    //     expires: 1,
+    //   },
+    // ],
   };
 }

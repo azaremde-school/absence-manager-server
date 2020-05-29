@@ -52,8 +52,10 @@ async function checkSession(session: string): Promise<ISessionCheckResult | fals
 }
 
 async function authentication(request: Request, clientType: EClientType): Promise<IAuthentication | false> {
-  var token: string = clientType === EClientType.Browser ? request.cookies.token || '' : request.headers['token'] || '';
-  const session: string = clientType === EClientType.Browser ? request.cookies.session || '' : request.headers['session'] || '';
+  // var token: string = clientType === EClientType.Browser ? request.cookies.token || '' : request.headers['token'] || '';
+  // const session: string = clientType === EClientType.Browser ? request.cookies.session || '' : request.headers['session'] || '';
+  var token: string = request.headers['token'] as (string | undefined) || '';
+  const session: string = request.headers['session'] as (string | undefined) || '';
 
   if (token) {
     const _id: string | false = checkToken(token);
