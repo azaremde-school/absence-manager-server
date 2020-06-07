@@ -16,16 +16,16 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(definePlatform);
-app.use(checkCors);
-app.use(auth);
-
-app.use('/account', account);
-
 app.get('/', (req, res) => {
   res.status(200).json({
     result: 'updated'
   });
 });
+
+app.use(definePlatform);
+app.use(checkCors);
+app.use(auth);
+
+app.use('/account', account);
 
 export default app;
