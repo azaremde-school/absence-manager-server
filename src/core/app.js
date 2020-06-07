@@ -22,4 +22,10 @@ app.use(auth);
 
 app.use('/account', account);
 
+app.get('/update', (req, res) => {
+  res.status(200).json({
+    result: 'updated'
+  });
+});
+
 export default app;
