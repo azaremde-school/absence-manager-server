@@ -1,0 +1,34 @@
+{
+  "name": "absence-manager-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon dist/app.js",
+    "bundle": "cls && webpack",
+    "dev": "webpack --watch",
+    "prod": "node dist/app.js"
+  },
+  "keywords": [],
+  "author": "Eugen Bondarev",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.8",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
