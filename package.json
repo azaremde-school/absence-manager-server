@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/app.js",
+    "start": "node dist/app.js",
     "bundle": "cls && webpack",
     "dev": "webpack --watch",
-    "prod": "node dist/app.js"
+    "hot": "nodemon dist/app.js"
   },
   "keywords": [],
   "author": "Eugen Bondarev",
