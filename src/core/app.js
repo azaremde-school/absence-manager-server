@@ -22,7 +22,7 @@ app.use(auth);
 
 app.use('/account', account);
 
-app.get('/update', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).json({
     result: 'updated'
   });
