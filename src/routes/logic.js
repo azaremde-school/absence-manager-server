@@ -21,8 +21,6 @@ router.post('/add_group', async (req, res) => {
     return;
   }
 
-  group._id += _id;
-
   await DBAccessor.db()
     .collection('groups')
     .insertOne({
@@ -47,15 +45,13 @@ router.post('/add_absence', async (req, res) => {
 
     return;
   }
-
-  const realId = groupId + _id;
   
   const index = (await DBAccessor.db()
     .collection('groups')
     .aggregate([
       {
         $match: {
-          _id: realId
+          _id: groupId
         }
       },
       {
@@ -68,7 +64,7 @@ router.post('/add_absence', async (req, res) => {
   var exists = false;
 
   const _group = (await DBAccessor.db().collection('groups').find({
-    _id: realId,
+    _id: groupId,
   }).toArray())[0];
 
   if (_group) {
@@ -84,7 +80,7 @@ router.post('/add_absence', async (req, res) => {
       .collection('groups')
       .updateOne(
         {
-          _id: realId,
+          _id: groupId,
         },
         {
           $pull: {
@@ -100,7 +96,7 @@ router.post('/add_absence', async (req, res) => {
     .collection('groups')
     .updateOne(
       {
-        _id: realId,
+        _id: groupId,
       },
       {
         $push: {
@@ -129,11 +125,49 @@ router.get('/get_groups', async (req, res) => {
     owner: _id
   }).toArray();
 
-  for (var i = 0; i < groups.length; i++) {
-    groups[i]._id = parseInt(groups[i]._id.replace(groups[i].owner, ''));
+  res.status(200).json(groups)
+});
+
+router.post('/edit_group', async (req, res) => {
+  const _id = req.auth;
+
+  if (!_id) {
+    res.status(200).json({
+      result: ERROR,
+    });
+
+    return;
+  }
+  
+  const { groupId, removedIds, newMembers } = req.body;
+
+  for (var i = 0; i < removedIds.length; i++) {
+    await DBAccessor.db().collection('groups').updateOne({
+      _id: groupId
+    }, {
+      $pull: {
+        members: {
+          _id: removedIds[i]
+        },
+      },
+    });
   }
 
-  res.status(200).json(groups)
+  for (var i = 0; i < newMembers.length; i++) {
+    await DBAccessor.db().collection('groups').updateOne({
+      _id: groupId
+    }, {
+      $push: {
+        members: {
+          _id: newMembers[i]._id,
+          name: newMembers[i].name,
+          absences: []
+        },
+      },
+    });
+  }
+
+  res.status(200).json('')
 });
 
 export default router;
